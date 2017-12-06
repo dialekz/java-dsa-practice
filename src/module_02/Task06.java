@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  *
  * @author dialekz
  */
-public class Task06 {
+class Task06 {
     private static final Integer[][] PALINDROMES = {{}, {0}, {1,2,1},{2,3,2},{6,7,6},{7,8,7},{1,2,2,1},{5,6,6,5},{1,2,3,2,1},{5,6,7,6,5}};
     private static final Integer[][] NOT_PALINDROMES = {{1,2,3},{2,3,4},{6,7,8},{7,8,9},{1,2,3,4},{5,6,5,6},{1,2,3,4,5},{5,6,7,8,9}};
 
