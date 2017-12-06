@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @author dialekz
  */
 class Task05 {
-    private static final Integer[][] TEST_ARRAYS = {{}, {0}, {1}, {1,2,3},{7,8,9},{1,2,3,4,5},{5,6,7,8,9}};
+    private static final Integer[][] TEST_ARRAYS = {{},{0},{1},{1,2,3},{7,8,9},{1,2,3,4,5},{5,6,7,8,9}};
 
     public static void main(String[] args) {
         asserts(Task05::foo1);

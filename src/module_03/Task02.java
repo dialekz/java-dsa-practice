@@ -5,34 +5,48 @@ package module_03;
  * Created:     06.12.2017
  * Project:     Practice-DSA
  * <p>
- * {@code Task02} RESOLVING TIME: in progress
+ * {@code Task02} RESOLVING TIME: 30min
  *
  * @author dialekz
  */
 class Task02 {
 
     private static class MyStack<T extends Comparable<T>> {
-        T min = null;
 
-        Entry<T> current = new Entry<>(null);
+        Entry current = new Entry(null, null);
         {
             current.prev = current;
         }
 
-        private static class Entry<E extends Comparable<E>> {
-            final E value;
+        private class Entry {
+            final T value;
+            final T min;
             Entry prev;
 
-            private Entry(E value) {
+            private Entry(T value, T min) {
                 this.value = value;
+                this.min = (min == null || min.compareTo(value) > 0) ? value : min;
             }
         }
 
+        /** O(N) */
         public void push(T t) {
-            min = (min == null || min.compareTo(t) > 0) ? t : min;
-            // TODO ...
+            Entry entry = new Entry(t, current.min);
+            entry.prev = current;
+            current = entry;
         }
 
+        /** O(N) */
+        public T pop() {
+            T value = current.value;
+            current = current.prev;
+            return value;
+        }
+
+        /** O(N) */
+        public T min() {
+            return current.min;
+        }
 
     }
 }
