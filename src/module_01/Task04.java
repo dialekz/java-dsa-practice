@@ -12,7 +12,7 @@ import java.util.function.Predicate;
  *
  * @author dialekz
  */
-public class Task04 {
+class Task04 {
 
     public static void main(String[] args) {
         asserts(Task04::foo);

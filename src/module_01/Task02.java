@@ -12,7 +12,7 @@ import java.util.function.BiPredicate;
  *
  * @author dialekz
  */
-public class Task02 {
+class Task02 {
 
     public static void main(String[] args) {
         asserts(Task02::foo);

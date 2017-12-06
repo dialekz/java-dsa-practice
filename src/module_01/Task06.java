@@ -10,7 +10,7 @@ import java.util.function.Function;
  *
  * @author dialekz
  */
-public class Task06 {
+class Task06 {
     private static final String[] TEST_STRINGS = {
             "aaaaaaaaaaaaaa",
             "bbbbbbbbbbbbbb",
