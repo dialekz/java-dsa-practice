@@ -16,11 +16,13 @@ public class Task02 {
 
     public static void main(String[] args) {
         asserts(Task02::foo);
-//        asserts(Task02::foo1);
     }
 
     /** First solution, O(N*logN) */
     private static boolean foo(String a, String b) {
+        if (a == null || b == null)
+            return false;
+
         // Preparing
         a = a.trim().replace(" ", "");
         b = b.trim().replace(" ", "");
@@ -40,6 +42,9 @@ public class Task02 {
 
     /** Second solution, O(N) TODO */
     private static boolean foo1(String a, String b) {
+        if (a == null || b == null)
+            return false;
+
         a = a.trim().replace(" ", "");
         b = b.trim().replace(" ", "");
         if (a.length() != b.length())

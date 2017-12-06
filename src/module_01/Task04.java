@@ -8,7 +8,7 @@ import java.util.function.Predicate;
  * Created:     05.12.2017
  * Project:     Practice-DSA
  * <p>
- * {@code Task04} RESOLVING TIME: 15m
+ * {@code Task04} RESOLVING TIME: 15min
  *
  * @author dialekz
  */
@@ -20,6 +20,11 @@ public class Task04 {
 
     /** First solution, O(N^2) --> N * (N/2 removing) */
     private static boolean foo(String a) {
+        if (a == null)
+            return false;
+        if (a.isEmpty())
+            return true;
+
         a = a.trim().replace(" ", "");
 
         Character mChar;
