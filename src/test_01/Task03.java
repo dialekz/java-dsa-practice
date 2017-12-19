@@ -11,7 +11,8 @@ import java.util.*;
  * Вы решили пройти как можно больше из них, но не можете проходить одновременно 2 курса.
  * Напишите программу выбора максимального числа курсов, которые вы можете пройти.
  *
- * Сложность O(N^3*log(N))
+ * Сложность foo(..) -> O(N^3*log(N))
+ * Сложность foo1(..) -> O(N*log(N))
  *
  * @author dialekz
  */
@@ -26,7 +27,6 @@ public class Task03 {
         int step = 0;
         Node previous = null;
         final Course value;
-        boolean visited = false;
         LinkedList<Node> nextCourses = new LinkedList<>();
 
         Node(Course value) {
@@ -98,16 +98,26 @@ public class Task03 {
             last = last.previous;
         }
 
-//        ListIterator<Node> iterator = graph.nodes.listIterator(graph.nodes.size());
-//        while (iterator.hasPrevious()) {
-//            curr = iterator.previous();
-//            if (curr.step == step && curr != last && curr.nextCourses.contains(last)) {
-//                last = curr;
-//                result.addFirst(last);
-//                step--;
-//            }
-//        }
+        return result;
+    }
+
+    private static LinkedList<Course> foo1(List<Course> courses) {
+
+        courses.sort(Comparator.comparing(c -> c.start));
+
+        LinkedList<Course> result = new LinkedList<>();
+        result.add(courses.get(0));
+
+        for (Course course : courses) {
+            if (result.getLast().end.before(course.start)) {
+                result.add(course);
+            } else if (result.getLast().end.after(course.end)) {
+                result.removeLast();
+                result.add(course);
+            }
+        }
 
         return result;
     }
+
 }

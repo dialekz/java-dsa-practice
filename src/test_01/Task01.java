@@ -1,7 +1,5 @@
 package test_01;
 
-import java.util.LinkedList;
-
 /**
  * Source:      Task01.java
  * Created:     08.12.2017
@@ -17,68 +15,44 @@ import java.util.LinkedList;
  */
 public class Task01 {
 
-    static LinkedList<Integer> fib = new LinkedList<>();
-    static {
-        fib.add(0);
-        fib.add(1);
-    }
-
     private static boolean foo(String str) {
-
-//        IT's BAD SOLUTION
-//        int n1Size = 1, n2Size = 1, index1, index2;
-//        int n1, n2, sum;
-//        int finish = 2;
-//        String sumStr, current = str;
-//        boolean result = false;
-//
-//
-//        n2 = Integer.valueOf(current.substring(0,n1Size));
-//
-//        while (finish <= str.length()) {
-//            index1 = n1Size + n1Size;
-//            n1 = n2;
-//            n2 = Integer.valueOf(current.substring(n1Size, index1));
-//            sum = n1 + n2;
-//
-//            sumStr = String.valueOf(sum);
-//            if (current.substring(index1, index1 + sumStr.length()).equals(sumStr)) {
-//                result = true;
-//            } else {
-//                if (n1Size == n2Size) {
-//                    n2Size++;
-//                } else {
-//                    n1Size++;
-//                }
-//                result = false;
-//            }
-//        }
-
-        int fullSize = 1, size = 1;
-        String current = str;
         boolean result = false;
 
-        while (fullSize != str.length()) {
-            int n = Integer.valueOf(current.substring(size));
-            if (!fib.contains(n) && fib.peekLast() < n) {
-                int n1, n2 = fib.get(fib.size()-2);
-                while (fib.peekLast() <= n) {
-                    n1 = n2;
-                    n2 = fib.peekLast();
-                    fib.add(n1 + n2);
-                }
-            }
+        String first, second, third;
+        int firstInt, secondInt, thirdInt;
+        int startIndex = 0, firstSize = 1, secondSize = 1;
+        int mainFirstSize = 1, mainSecondSize = 1;
 
-            if (fib.peekLast() > n) {
-                size++;
-                fullSize++;
-                current = str;
-                continue;
-            } else if (fib.peekLast() == n) {
-                // TODO
+        while (firstSize + secondSize < str.length()/2 && startIndex + firstSize + secondSize < str.length()) {
+
+            first = str.substring(startIndex, startIndex + firstSize);
+            second = str.substring(startIndex + firstSize, startIndex + firstSize + secondSize);
+
+            firstInt = Integer.valueOf(first);
+            secondInt = Integer.valueOf(second);
+
+            thirdInt = firstInt + secondInt;
+            third = String.valueOf(thirdInt);
+
+            if (str.regionMatches(startIndex + firstSize + secondSize, third, 0, third.length())) {
+                startIndex += firstSize;
+                firstSize = secondSize;
+                secondSize = third.length();
+                result = true;
+            } else {
+                if (mainSecondSize > mainFirstSize) {
+                    mainFirstSize++;
+                } else {
+                    mainSecondSize++;
+                }
+                startIndex = 0;
+                firstSize = mainFirstSize;
+                secondSize = mainSecondSize;
+                result = false;
             }
         }
 
         return result;
     }
+
 }
