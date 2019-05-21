@@ -1,6 +1,12 @@
-package test_01;
+package course2017.test_01;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Source:      Task03.java
@@ -32,6 +38,22 @@ public class Task03 {
         Node(Course value) {
             this.value = value;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Node node = (Node) o;
+            return step == node.step &&
+                    Objects.equals(previous, node.previous) &&
+                    Objects.equals(value, node.value) &&
+                    Objects.equals(nextCourses, node.nextCourses);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(step, previous, value, nextCourses);
+        }
     }
 
     private static class Graph {
@@ -58,6 +80,7 @@ public class Task03 {
         }
     }
 
+    @SuppressWarnings("unused")
     private static LinkedList<Node> foo(List<Course> courses) {
         Graph graph = new Graph();
         for (Course course : courses) {
@@ -68,7 +91,7 @@ public class Task03 {
 
         List<Node> current = new LinkedList<>(graph.nodes);
         Set<Node> next = new TreeSet<>();
-        Node last = new Node(null), curr;
+        Node last = new Node(null);
 
         while (true) { // N
             step++;
@@ -101,8 +124,8 @@ public class Task03 {
         return result;
     }
 
+    @SuppressWarnings("unused")
     private static LinkedList<Course> foo1(List<Course> courses) {
-
         courses.sort(Comparator.comparing(c -> c.start));
 
         LinkedList<Course> result = new LinkedList<>();

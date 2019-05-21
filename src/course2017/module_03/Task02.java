@@ -1,4 +1,4 @@
-package module_03;
+package course2017.module_03;
 
 /**
  * Source:      Task02.java

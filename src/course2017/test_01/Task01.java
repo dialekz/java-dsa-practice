@@ -1,4 +1,4 @@
-package test_01;
+package course2017.test_01;
 
 /**
  * Source:      Task01.java

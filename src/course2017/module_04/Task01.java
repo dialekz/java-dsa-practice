@@ -1,4 +1,4 @@
-package module_04;
+package course2017.module_04;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -57,7 +57,7 @@ public class Task01 {
 
          static class Node {
             private boolean visited = false;
-            private List<Graph.Node> neighbors = new LinkedList<>();
+            private final List<Graph.Node> neighbors = new LinkedList<>();
         }
     }
 

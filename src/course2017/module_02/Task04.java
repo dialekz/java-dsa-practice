@@ -1,4 +1,4 @@
-package module_02;
+package course2017.module_02;
 
 import java.util.Arrays;
 import java.util.LinkedList;

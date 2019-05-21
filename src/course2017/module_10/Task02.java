@@ -1,4 +1,4 @@
-package module_10;
+package course2017.module_10;
 
 import java.util.Arrays;
 import java.util.Collections;

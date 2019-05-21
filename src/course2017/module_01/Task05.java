@@ -1,4 +1,4 @@
-package module_01;
+package course2017.module_01;
 
 import java.util.function.BiPredicate;
 

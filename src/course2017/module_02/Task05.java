@@ -1,4 +1,4 @@
-package module_02;
+package course2017.module_02;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -23,6 +23,7 @@ class Task05 {
     }
 
     /** Solution, O(N) */
+    @SuppressWarnings("unused")
     private static LinkedList<Integer> foo(LinkedList<Integer> list1, LinkedList<Integer> list2) {
         if (list1 == null || list1.isEmpty())
             return list2;
@@ -77,9 +78,9 @@ class Task05 {
     private static void asserts(BiFunction<LinkedList<Integer>, LinkedList<Integer>, LinkedList<Integer>> function) {
         LinkedList<Integer> list1, list2;
         for (Integer[] element1 : TEST_ARRAYS) {
-            list1 = new LinkedList<>(Arrays.stream(element1).collect(Collectors.toList()));
+            list1 = Arrays.stream(element1).collect(Collectors.toCollection(LinkedList::new));
             for (Integer[] element2 : TEST_ARRAYS) {
-                list2 = new LinkedList<>(Arrays.stream(element2).collect(Collectors.toList()));
+                list2 = Arrays.stream(element2).collect(Collectors.toCollection(LinkedList::new));
                 System.out.println(Arrays.toString(element1) + " + " + Arrays.toString(element2) + " --> " + function.apply(list1, list2));
             }
         }

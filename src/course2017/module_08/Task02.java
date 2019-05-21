@@ -1,4 +1,4 @@
-package module_08;
+package course2017.module_08;
 
 import java.util.Arrays;
 
@@ -12,7 +12,7 @@ import java.util.Arrays;
  * @author dialekz
  */
 public class Task02 {
-    private static int[][] ARRAY = {
+    private static final int[][] ARRAY = {
             {0,2,0,0,0,2,2,0},
             {0,0,0,2,2,2,2,0},
             {0,2,0,0,0,2,2,0},

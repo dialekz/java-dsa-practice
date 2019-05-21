@@ -1,4 +1,4 @@
-package module_01;
+package course2017.module_01;
 
 import java.util.Arrays;
 import java.util.function.BiPredicate;
@@ -49,12 +49,11 @@ class Task02 {
         b = b.trim().replace(" ", "");
         if (a.length() != b.length())
             return false;
-        if (a.equals(b))
-            return true;
+
+        return a.equals(b);
 
         // TODO use HashMap
 
-        return false;
     }
 
     private static void asserts(BiPredicate<String, String> predicate) {
