@@ -56,7 +56,7 @@ public class TaskE {
 
         for (int i = 0; i < arr.length; i++) {
             arr[i] = arr[i].replace(currentKey, currentValue);
-            atomicReplace(arr[i], new HashMap<>(map));
+            arr[i] = atomicReplace(arr[i], new HashMap<>(map));
         }
 
         return String.join(currentValue, arr);
