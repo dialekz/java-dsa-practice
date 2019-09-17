@@ -1,8 +1,9 @@
-package leetcode;
+package leetcode.task001TwoSum;
 
 import java.util.Arrays;
 
-class Solution {
+public class Solution {
+
     public int[] twoSum(int[] nums, int target) {
         int[] sorted = sortArr(nums);
         int left = 0;
@@ -34,9 +35,6 @@ class Solution {
         }
         return -1;
     }
-}
-
-public class Problem001_TwoSum {
 
     public static void main(String[] args) {
         var solution = new Solution();
