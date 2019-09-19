@@ -1,6 +1,5 @@
 package leetcode.task003LongestWithoutRepeating;
 
-
 public class Solution {
 
     public int lengthOfLongestSubstring(String s) {
@@ -22,8 +21,9 @@ public class Solution {
                 while (true) {
                     left++;
 
-                    if (leftChar == rightChar)
+                    if (leftChar == rightChar) {
                         break;
+                    }
 
                     count--;
                     letters[leftChar] = 0;

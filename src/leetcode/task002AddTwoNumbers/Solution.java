@@ -1,6 +1,5 @@
 package leetcode.task002AddTwoNumbers;
 
-
 public class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int val = l1.val + l2.val;
@@ -29,8 +28,9 @@ public class Solution {
             addValue = val / 10;
         }
 
-        if (addValue != 0)
+        if (addValue != 0) {
             current.next = new ListNode(addValue);
+        }
 
         return result;
     }
@@ -40,16 +40,16 @@ public class Solution {
 
         System.out.println(solution.addTwoNumbers(new ListNode(1), new ListNode(1))); // 2
 
-        ListNode value12    = new ListNode(1);
-        value12.next        = new ListNode(2);
+        ListNode value12 = new ListNode(1);
+        value12.next = new ListNode(2);
         System.out.println(solution.addTwoNumbers(value12, new ListNode(1))); // 2-2
         System.out.println(solution.addTwoNumbers(new ListNode(1), value12)); // 2-2
         System.out.println(solution.addTwoNumbers(value12, new ListNode(9))); // 0-3
         System.out.println(solution.addTwoNumbers(new ListNode(9), value12)); // 0-3
 
-        ListNode value123   = new ListNode(1);
-        value123.next       = new ListNode(2);
-        value123.next.next  = new ListNode(3);
+        ListNode value123 = new ListNode(1);
+        value123.next = new ListNode(2);
+        value123.next.next = new ListNode(3);
         System.out.println(solution.addTwoNumbers(value123, new ListNode(1))); // 2-2-3
         System.out.println(solution.addTwoNumbers(new ListNode(1), value123)); // 2-2-3
         System.out.println(solution.addTwoNumbers(value123, value123));        // 2-4-6
