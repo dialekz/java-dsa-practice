@@ -4,21 +4,28 @@ plugins {
 }
 
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.12'
+sourceCompatibility = '1.11'
 
 idea {
     module {
         inheritOutputDirs = false
-        outputDir = compileJava.destinationDir
-        testOutputDir = compileTestJava.destinationDir
+        outputDir = file('build/classes/main')
+        testOutputDir = file('build/classes/test')
         sourceDirs += file('src')
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src"]
+        }
     }
 }
 
 repositories {
     mavenCentral()
 }
-
 
 dependencies {
 }
