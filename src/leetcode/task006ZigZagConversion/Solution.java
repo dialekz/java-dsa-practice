@@ -1,4 +1,4 @@
-package leetcode.task005ZigZagConversion;
+package leetcode.task006ZigZagConversion;
 
 public class Solution {
     public String convert(String s, int numRows) {
