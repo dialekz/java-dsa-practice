@@ -14,9 +14,8 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-//    testImplementation(platform('org.junit:junit-bom:5.9.1'))
-//    testImplementation('org.junit.jupiter:junit-jupiter')
-    testImplementation('junit:junit:4.13')
+    testImplementation(platform('org.junit:junit-bom:5.9.1'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
 
 }
 
@@ -26,15 +25,3 @@ test {
         events "passed", "skipped", "failed"
     }
 }
-
-//compileKotlin {
-//    kotlinOptions {
-//        jvmTarget = "1.11"
-//    }
-//}
-//
-//compileTestKotlin {
-//    kotlinOptions {
-//        jvmTarget = "1.11"
-//    }
-//}

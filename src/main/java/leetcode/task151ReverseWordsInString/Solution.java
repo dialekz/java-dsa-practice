@@ -1,5 +1,8 @@
 package leetcode.task151ReverseWordsInString;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+
 /**
  * 151. Reverse Words in a String
  * <p>
@@ -33,20 +36,51 @@ class Solution {
   public String reverseWords(String s) {
     final StringBuilder result = new StringBuilder(s.length());
     final StringBuilder word = new StringBuilder();
+
     new StringBuilder(s.trim()).chars()
         .mapToObj(c -> (char) c)
         .forEach(c -> {
-          if (!c.equals(' '))
+          if (!c.equals(' ')) {
             word.append(c);
-          else {
+          } else {
             if (word.length() > 0)
-              word.append(' ');
+              word.insert(0, ' ');
 
-            result.append(word, 0, word.length());
+            result.insert(0, word);
             word.delete(0, word.length());
           }
         });
 
-    return result.toString().trim();
+    return result.insert(0, word).toString();
+  }
+
+  public String reverseWordsSimple(String s) {
+    final LinkedList<String> result = new LinkedList<>();
+    Arrays.stream(s.trim().split(" "))
+        .filter(str -> !str.isBlank())
+        .forEachOrdered(str -> result.addFirst(str.trim()));
+    return String.join(" ", result);
+  }
+
+
+  public String reverseWordsOptimal(String s) {
+    final char[] src = s.trim().toCharArray();
+    final StringBuilder result = new StringBuilder(src.length);
+
+    boolean multiSpace = false;
+    int wordCount = 0;
+
+    for (char c : src) {
+      if (c == ' ' && !multiSpace) {
+        result.insert(0, c);
+        multiSpace = true;
+        wordCount = 0;
+      } else if (c != ' ') {
+        result.insert(wordCount++, c);
+        multiSpace = false;
+      }
+    }
+
+    return result.toString();
   }
 }
