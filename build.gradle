@@ -7,16 +7,6 @@ plugins {
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.11'
 
-idea {
-    module {
-        inheritOutputDirs = false
-        outputDir = file('build/classes/main')
-        testOutputDir = file('build/classes/test')
-        sourceDirs += file('src/main')
-        testSourceDirs += file('src/test')
-    }
-}
-
 repositories {
     mavenCentral()
 }
@@ -24,19 +14,27 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+//    testImplementation(platform('org.junit:junit-bom:5.9.1'))
+//    testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation('junit:junit:4.13')
 
 }
 
-compileKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
     }
 }
 
-compileTestKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
+//compileKotlin {
+//    kotlinOptions {
+//        jvmTarget = "1.11"
+//    }
+//}
+//
+//compileTestKotlin {
+//    kotlinOptions {
+//        jvmTarget = "1.11"
+//    }
+//}
