@@ -18,11 +18,6 @@ public class Solution {
 
     Counter counter = countNodesWithH(root, new Counter(), 0);
 
-    if (counter.h == 0)
-      return counter.leafCount;
-    else if (counter.h == 1)
-      return 1 + counter.leafCount;
-
     return (int) Math.pow(2, counter.h) - 1 + counter.leafCount;
   }
 
