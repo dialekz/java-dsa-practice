@@ -1,42 +1,51 @@
 package leetcode.task1926NearestExitFromEntranceInMaze;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 class Solution {
-  private char[][] staticMaze;
-  private int[][] path;
-  private int length, height;
 
   public int nearestExit(char[][] maze, int[] entrance) {
-    staticMaze = maze;
-    height = staticMaze.length - 1;
-    length = staticMaze[0].length - 1;
-    path = new int[staticMaze.length][staticMaze[0].length];
+    int height = maze.length - 1;
+    int length = maze[0].length - 1;
+
+    int[][] path = new int[maze.length][maze[0].length];
     path[entrance[0]][entrance[1]] = 1;
-    return nearestExitRec(entrance, 0, -1);
-  }
 
-  private int nearestExitRec(int[] current, int count, int best) {
-    int result, y = current[0], x = current[1];
-    for (int[] position : new int[][]{{y - 1, x}, {y + 1, x}, {y, x - 1}, {y, x + 1}}) {
-      int i = position[0], j = position[1];
-      if (i < 0 || i > height || j < 0 || j > length)
-        continue;
+    Queue<int[]> states = new LinkedList<>();
+    Queue<Integer> values = new LinkedList<>();
+    states.add(entrance);
+    values.add(0);
 
-      if (path[i][j] == 1)
-        continue;
+    int[][] steps = new int[][]{{-1, 0}, {+1, 0}, {0, -1}, {0, +1}};
 
-      if (staticMaze[i][j] == '.') {
-        if (i == 0 || j == 0 || i == height || j == length)
-          return count + 1;
-        else if (best != -1 && count + 1 > best)
-          return best;
-        else {
-          path[i][j] = 1;
-          result = nearestExitRec(position, count + 1, best);
-          best = (result != -1) ? result : best;
-          path[i][j] = 0;
+    int i, j, count;
+    int[] current;
+
+    while (!states.isEmpty() && !values.isEmpty()) {
+      count = values.poll();
+      current = states.poll();
+      for (int[] step : steps) {
+        i = current[0] + step[0];
+        j = current[1] + step[1];
+
+        if (i < 0 || i > height || j < 0 || j > length)
+          continue;
+
+        if (path[i][j] == 1)
+          continue;
+
+        if (maze[i][j] == '.') {
+          if (i == 0 || j == 0 || i == height || j == length)
+            return count + 1;
+          else {
+            path[i][j] = 1;
+            states.add(new int[]{i, j});
+            values.add(count + 1);
+          }
         }
       }
     }
-    return best;
+    return -1;
   }
 }

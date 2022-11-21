@@ -66,15 +66,17 @@ class SolutionTest {
   }
 
 
-//  @Test
-//  void nearestExit6() {
-//    char[][] maze = new char[][]{
-//        {'+', '+', '+'},
-//        {'.', '.', '.'},
-//        {'+', '+', '+'}};
-//    int[] entrance = new int[]{1, 0};
-//    int expected = -1;
-//    assertEquals(expected, solution.nearestExit(maze, entrance));
-//  }
+  @Test
+  void nearestExit6() {
+    char[][] maze = new char[][]{
+        {'+', '.', '+', '+', '+', '+', '+'},
+        {'+', '.', '+', '.', '.', '.', '+'},
+        {'+', '.', '+', '.', '+', '.', '+'},
+        {'+', '.', '.', '.', '.', '.', '+'},
+        {'+', '+', '+', '+', '.', '+', '.'}};
+    int[] entrance = new int[]{0, 1};
+    int expected = 7;
+    assertEquals(expected, solution.nearestExit(maze, entrance));
+  }
 
 }
