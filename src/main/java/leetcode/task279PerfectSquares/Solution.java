@@ -12,11 +12,11 @@ public class Solution {
       values.add(value);
     }
 
-    return numSquaresRec(n, values.size() - 1, 0, 1, -1, values);
+    return numSquaresRec(n, values.size() - 1, 0, 1, n, values);
   }
 
   private int numSquaresRec(int n, int i, int currentSum, int count, int result, List<Integer> values) {
-    if (result != -1 && result <= count)
+    if (result <= count)
       return result;
 
     int tmp, applicant;
@@ -27,7 +27,7 @@ public class Solution {
         return count;
       else if (tmp < n) {
         applicant = numSquaresRec(n, i, tmp, count + 1, result, values);
-        if (result == -1 || result > applicant)
+        if (result > applicant)
           result = applicant;
       }
     }
