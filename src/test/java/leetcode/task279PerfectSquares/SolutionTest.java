@@ -5,6 +5,17 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Example 1:
+ * Input: n = 12
+ * Output: 3
+ * Explanation: 12 = 4 + 4 + 4.
+ * <p>
+ * Example 2:
+ * Input: n = 13
+ * Output: 2
+ * Explanation: 13 = 4 + 9.
+ */
 class SolutionTest {
 
   private final Solution solution = new Solution();
