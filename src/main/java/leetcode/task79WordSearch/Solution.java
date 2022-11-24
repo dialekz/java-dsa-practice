@@ -14,15 +14,12 @@ class Solution {
 
   public boolean exist(char[][] board, String word) {
     visited = new byte[board.length][board[0].length];
-    boolean result;
-
 
     for (int i = 0; i < board.length; i++) {
       for (int j = 0; j < board[i].length; j++) {
         if (board[i][j] == word.charAt(0)) {
           visited[i][j] = 1;
-          result = word.length() == 1 || findNext(board, 1, word, i, j);
-          if (result)
+          if (word.length() == 1 || findNext(board, 1, word, i, j))
             return true;
           visited[i][j] = 0;
         }
@@ -32,26 +29,25 @@ class Solution {
   }
 
   private boolean findNext(char[][] board, int current, String word, int y, int x) {
-    int[] variant;
-    boolean result = false;
+    int i, j;
     for (int[] step : steps) {
-      variant = new int[]{y + step[0], x + step[1]};
+      i = y + step[0];
+      j = x + step[1];
 
-      if (variant[0] < 0 || variant[1] < 0
-          || variant[0] >= board.length || variant[1] >= board[0].length
-          || visited[variant[0]][variant[1]] == 1)
+      if (i < 0 || j < 0 || i >= board.length || j >= board[0].length || visited[i][j] == 1)
         continue;
 
-      if (board[variant[0]][variant[1]] == word.charAt(current)) {
+      if (board[i][j] == word.charAt(current)) {
         if (current + 1 == word.length())
           return true;
         else {
-          visited[variant[0]][variant[1]] = 1;
-          result = result || findNext(board, current + 1, word, variant[0], variant[1]);
-          visited[variant[0]][variant[1]] = 0;
+          visited[i][j] = 1;
+          if (findNext(board, current + 1, word, i, j))
+            return true;
+          visited[i][j] = 0;
         }
       }
     }
-    return result;
+    return false;
   }
 }
