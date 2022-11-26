@@ -1,11 +1,13 @@
 package leetcode.task907SumOfSubarrayMinimums;
 
-import java.math.BigInteger;
+import java.util.LinkedList;
+import java.util.List;
 
 class Solution {
 
   public int sumSubarrayMins(int[] arr) {
-    BigInteger result = BigInteger.valueOf(0);
+    long result = 0;
+    List<Long> results = new LinkedList<>();
     int ndx;
     for (int size = 0; size < arr.length; size++) {
       ndx = -1;
@@ -16,14 +18,19 @@ class Solution {
           ndx = findMinIndex(arr, from, to);
         else if (arr[ndx] >= arr[to])
           ndx = to;
-        result = result.add(BigInteger.valueOf(arr[ndx]));
+
+        result += arr[ndx];
+        if (result > Integer.MAX_VALUE) {
+          results.add(result);
+          result = 0;
+        }
       }
     }
 
-    if (result.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) <= 0)
-      return result.intValue();
+    if (results.isEmpty())
+      return (int) result;
     else
-      return result.mod(BigInteger.valueOf(1000000007)).intValue();
+      return (int) (results.stream().mapToLong(Long::longValue).map(l -> l % 1000000007).sum() % 1000000007);
   }
 
   /**
