@@ -1,46 +1,35 @@
 package leetcode.task907SumOfSubarrayMinimums;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Stack;
 
+
+/**
+ * Given an array of integers arr, find the sum of min(b),
+ * where b ranges over every (contiguous) subarray of arr.
+ * Since the answer may be large, return the answer modulo 109 + 7.
+ */
 class Solution {
 
   public int sumSubarrayMins(int[] arr) {
     long result = 0;
-    List<Long> results = new LinkedList<>();
-    int ndx;
-    for (int size = 0; size < arr.length; size++) {
-      ndx = -1;
-      for (int from = 0, to = size; to < arr.length; from++, to++) {
-        if (from == to)
-          ndx = from;
-        else if (ndx < from)
-          ndx = findMinIndex(arr, from, to);
-        else if (arr[ndx] >= arr[to])
-          ndx = to;
+    int ndx, prev, from, to, current, mod = 1000000007;
 
-        result += arr[ndx];
-        if (result > Integer.MAX_VALUE) {
-          results.add(result);
-          result = 0;
-        }
+    Stack<Integer> stack = new Stack<>();
+    stack.push(-1);
+
+    for (int i = 0; i <= arr.length; i++) {
+      current = i == arr.length ? 0 : arr[i];
+      while (stack.peek() != -1 && current < arr[stack.peek()]) {
+        ndx = stack.pop();
+        prev = stack.peek();
+        from = ndx - prev;
+        to = i - ndx;
+
+        result += ((long) from * to * arr[ndx]) % mod;
       }
+      stack.push(i);
     }
 
-    if (results.isEmpty())
-      return (int) result;
-    else
-      return (int) (results.stream().mapToLong(Long::longValue).map(l -> l % 1000000007).sum() % 1000000007);
-  }
-
-  /**
-   * @return index of min in arr segment
-   */
-  private int findMinIndex(int[] arr, int from, int to) {
-    int ndx = from;
-    for (int i = from; i <= to; i++) {
-      ndx = arr[ndx] < arr[i] ? ndx : i;
-    }
-    return ndx;
+    return (int) (result % mod);
   }
 }
